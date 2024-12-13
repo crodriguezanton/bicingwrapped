@@ -35,8 +35,6 @@ export async function login(username: string, password: string) {
     refresh_token: "null",
   });
 
-  console.log(`Logging in with username ${username}`);
-
   const response = await fetch(
     "https://api.bsmsa.eu/ext/srvl/bsm/maas/app/v5/oauth/token",
     {
@@ -81,7 +79,6 @@ export async function getTrips(accessToken: string) {
 }
 
 async function getTripsPage(accessToken: string, page: number) {
-  console.log(`Fetching trips page ${page}`);
   const response = await fetch(
     `https://barcelona.publicbikesystem.net/customer/v3/profile/trips?period=thisyear&page=${page}`,
     {

@@ -14,9 +14,6 @@ function processTrip(trip: Trip): ProcessedTrip {
   );
 
   if (!startStation || !endStation) {
-    console.error(
-      `Station not found for trip ${trip.startStationId} -> ${trip.endStationId}`,
-    );
     return trip;
   }
 
