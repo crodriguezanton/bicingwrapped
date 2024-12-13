@@ -70,12 +70,14 @@ export async function getTrips(accessToken: string) {
   let tripCount = 0;
   do {
     const response = await getTripsPage(accessToken, page);
-    trips.push(...response.trips);
+    trips.push(
+      ...response.trips as Trip[],
+    );
     tripCount = response.tripCount;
     page++;
   } while (tripCount !== 0);
 
-  return trips;
+  return trips.filter((trip) => trip.endStationName !== null);
 }
 
 async function getTripsPage(accessToken: string, page: number) {
@@ -89,7 +91,7 @@ async function getTripsPage(accessToken: string, page: number) {
     },
   );
 
-  return TripsResponseSchema.parse(await response.json());
+  return TripsResponseSchema.parse(await response.json())
 }
 
 function addStationName(data: { station: string; count: number }) {

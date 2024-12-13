@@ -18,13 +18,13 @@ export const TripSchema = z
     startTime: z.string().datetime(),
     startStationName: z.string(),
     startStationId: z.number(),
-    endTime: z.string().datetime(),
-    endStationName: z.string(),
-    endStationId: z.number(),
-    duration: z.number(),
-    price: z.number(),
-    open: z.boolean(),
-    bikeQrCode: z.string(),
+    endTime: z.string().datetime().nullish(),
+    endStationName: z.string().nullish(),
+    endStationId: z.number().nullish(),
+    duration: z.number().nullish(),
+    price: z.number().nullish(),
+    open: z.boolean().nullish(),
+    bikeQrCode: z.string().nullish(),
     bike: z.object({
       id: z.number(),
       obcn: z.string(),
@@ -54,7 +54,15 @@ export const TripSchema = z
     };
   });
 
-export type Trip = z.infer<typeof TripSchema>;
+export type Trip = z.infer<typeof TripSchema> & {
+  endTime: string;
+  endStationName: string;
+  endStationId: number;
+  open: boolean;
+  duration: number;
+  price: number;
+};
+
 export type EnrichedTrip = Trip & {
   startStationLocation: [number, number];
   endStationLocation: [number, number];
@@ -66,7 +74,9 @@ export type EnrichedTrip = Trip & {
 export type ProcessedTrip = Trip | EnrichedTrip;
 export const TripsResponseSchema = z.object({
   tripCount: z.number(),
-  trips: z.array(TripSchema),
+  trips: z.array(TripSchema).transform((trips) =>
+    trips.filter((trip) => !!trip.endStationName && !!trip.endTime),
+  ),
 });
 
 export const ProfileSchema = z.object({
