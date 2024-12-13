@@ -1,0 +1,38 @@
+.slideshowContainer {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-family: Arial, sans-serif;
+  position: relative;
+  overflow: hidden;
+}
+
+.slideContent {
+  text-align: center;
+  max-width: 80%;
+}
+
+.title {
+  font-size: 3rem;
+  margin-bottom: 2rem;
+}
+
+.statsList {
+  list-style-type: none;
+  padding: 0;
+}
+
+.statItem {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.summaryDescription {
+  font-size: 1.5rem;
+  line-height: 1.6;
+  max-width: 600px;
+  margin: 0 auto;
+}
