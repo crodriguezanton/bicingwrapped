@@ -97,7 +97,7 @@ async function getTripsPage(accessToken: string, page: number) {
 function addStationName(data: { station: string; count: number }) {
   return {
     ...data,
-    stationName: stations.find((s) => s.id === parseInt(data.station))!.name,
+    stationName: stations.find((s) => s.id === parseInt(data.station))?.name ?? `Estació ${data.station}`,
   };
 }
 

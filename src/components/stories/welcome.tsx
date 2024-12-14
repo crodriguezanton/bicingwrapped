@@ -1,5 +1,4 @@
 import { motion } from "framer-motion";
-import { mockStats } from "~/data/mockStats";
 import type { RouterOutputs } from "~/trpc/react";
 
 export default function WelcomeSlide({
@@ -38,20 +37,6 @@ export default function WelcomeSlide({
           Anem a veure com ha anat el teu any amb Bicing!
         </motion.div>
       </h2>
-      {mockStats[0]!.subtitle && (
-        <motion.p
-          className="text-xl leading-relaxed text-white/90 md:text-2xl"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.6 }}
-        >
-          {mockStats[0]!.subtitle.split("\n").map((line, i) => (
-            <span key={i} className="block">
-              {line}
-            </span>
-          ))}
-        </motion.p>
-      )}
     </motion.div>
   );
 }
