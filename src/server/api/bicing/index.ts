@@ -82,7 +82,7 @@ export async function getTrips(accessToken: string) {
 
 async function getTripsPage(accessToken: string, page: number) {
   const response = await fetch(
-    `https://barcelona.publicbikesystem.net/customer/v3/profile/trips?period=thisyear&page=${page}`,
+    `https://barcelona.publicbikesystem.net/customer/v3/profile/trips?period=lastyear&page=${page}`,
     {
       headers: {
         Authorization: `Bearer ${accessToken}`,
